@@ -31,10 +31,10 @@ KEYMAP="fr"
 COUNTRY_LOCATION="France"
 BOX_NAME="Livebox-D3E6"
 BOX_PASSWD=""
-DATA_REPOSITORY="" #https://gitlab.com/[account]/[repo].git
-DATA_INSTALL_FOLDER=".distantHome"
-CONFIG_REPOSITORY="https://github.com/lizcaps/arch-sway.git"
-CONFIG_FOLDER=".asi"
+DATA_REPOSITORY="https://github.com/lizcaps/Home.git"
+DATA_INSTALL_FOLDER=".env/Home"
+CONFIG_REPOSITORY="https://github.com/lizcaps/asi.git"
+CONFIG_FOLDER=".env/asi"
 
 
 while getopts ":u:lp:p:l:k:cl:cn:id:us:rs:ss:dr:di:cr:cf:" arg; do
@@ -90,6 +90,7 @@ swapon /dev/mapper/archvg-swap
 loadkeys "$KEYMAP"
 
 # -- Install Base Packages --
+pacman -Sy reflector
 reflector -c "$COUNTRY_LOCATION" -f 12 -l 12 --verbose --save /etc/pacman.d/mirrorlist
 pacstrap /mnt base base-devel linux linux-firmware lvm2 \
 grub efibootmgr \
@@ -151,10 +152,10 @@ echo "-- $USERNAME --"
 arch-chroot /mnt passwd $USERNAME
 
 # -- Configure --
-arch-chroot /mnt ln -sf /home/"$USERNAME"/"$INSTALL_FOLDER"/home/.zshrc /home/"$USERNAME"/.zshrc
-arch-chroot /mnt ln -sf /home/"$USERNAME"/"$INSTALL_FOLDER"/home/.Xdefaults /home/"$USERNAME"/.Xdefaults
-arch-chroot /mnt ln -sf /home/"$USERNAME"/"$INSTALL_FOLDER"/config /home/"$USERNAME"/.config
-arch-chroot /mnt cp /home/"$USERNAME"/"$INSTALL_FOLDER"/ressources/grubBackground.jpg /boot/grub/themes/background.jpg
+#arch-chroot /mnt ln -sf /home/"$USERNAME"/"$INSTALL_FOLDER"/home/.zshrc /home/"$USERNAME"/.zshrc
+#arch-chroot /mnt ln -sf /home/"$USERNAME"/"$INSTALL_FOLDER"/home/.Xdefaults /home/"$USERNAME"/.Xdefaults
+#arch-chroot /mnt ln -sf /home/"$USERNAME"/"$INSTALL_FOLDER"/config /home/"$USERNAME"/.config
+#arch-chroot /mnt cp /home/"$USERNAME"/"$INSTALL_FOLDER"/ressources/grubBackground.jpg /boot/grub/themes/background.jpg
 
 echo "     ------ INSTALLATION DONE ------"
 echo "You should check if everything went right."
