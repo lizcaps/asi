@@ -96,11 +96,10 @@ pacstrap /mnt base base-devel linux linux-firmware lvm2 \
 grub efibootmgr \
 wpa_supplicant wireless_tools networkmanager \
 pulseaudio openssh openvpn acpilight\
-nano git htop neofetch wget curl noto-fonts man \
+neovim git htop neofetch wget curl noto-fonts man \
 sway xorg-server-xwayland swaylock swaybg waybar dmenu pavucontrol \
 atom rxvt-unicode firefox-developer-edition discord\
 libreoffice-fresh
-#zsh zsh-theme-powerlevel9k awesome-terminal-fonts
 
 # -- Generate fstab --
 genfstab -U -p /mnt >> /mnt/etc/fstab
